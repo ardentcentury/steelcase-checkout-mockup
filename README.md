@@ -1,1 +1,1 @@
-# steelcase-checkout-mockup
+# steelcase-checkout-mockup (upfront discount)
