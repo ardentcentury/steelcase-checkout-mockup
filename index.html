@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steelcase Checkout | B2B Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-right: 16px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            margin-top: 4px;
+            font-size: 14px;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #333;
+            box-shadow: 0 0 0 1px #333;
+        }
+        .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+    <header class="py-6 px-8 border-b border-gray-200 flex items-center justify-between">
+        <div class="max-w-6xl mx-auto w-full flex items-center justify-between">
+            <h1 class="text-3xl font-bold tracking-tighter">Steelcase <span class="font-normal text-gray-600">store</span></h1>
+            <div class="flex items-center text-blue-600 text-sm font-medium cursor-pointer hover:underline">
+                Shop for Business <span class="ml-1">&rarr;</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12 flex flex-col lg:flex-row gap-16">
+        
+        <div class="flex-1">
+            <div class="flex items-center pb-8 border-b border-gray-200 mb-8 opacity-50">
+                <div class="step-circle">1</div><h2 class="text-2xl font-light">Cart Details</h2>
+            </div>
+            <div class="flex items-center pb-8 border-b border-gray-200 mb-8 opacity-50">
+                <div class="step-circle">2</div><h2 class="text-2xl font-light">Delivery Method</h2>
+            </div>
+            <div class="flex items-center pb-8 border-b border-gray-200 mb-8 opacity-50">
+                <div class="step-circle">3</div><h2 class="text-2xl font-light">Billing & Payment</h2>
+            </div>
+
+            <div class="mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="step-circle font-semibold">4</div>
+                    <h2 class="text-2xl font-light">Contact & Shipping</h2>
+                </div>
+
+                <form id="checkout-form" class="pl-12 space-y-5" onsubmit="event.preventDefault();">
+                    
+                    <div>
+                        <label class="form-label">Country*</label>
+                        <select class="form-input bg-white">
+                            <option selected>United States</option>
+                            <option>Canada</option>
+                            <option>United Kingdom</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="form-label">First Name*</label>
+                            <input type="text" class="form-input" value="John" required>
+                        </div>
+                        <div>
+                            <label class="form-label">Last Name*</label>
+                            <input type="text" class="form-input" value="Doe" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Company Name</label>
+                        <input type="text" class="form-input" value="Acme Corporation">
+                    </div>
+
+                    <div>
+                        <label class="form-label">Address*</label>
+                        <input type="text" class="form-input" value="123 Innovation Drive" required>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Address 2</label>
+                        <input type="text" class="form-input" value="Suite 400">
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label class="form-label">City*</label>
+                            <input type="text" class="form-input" value="New York" required>
+                        </div>
+                        <div>
+                            <label class="form-label">State*</label>
+                            <select class="form-input bg-white" required>
+                                <option value="">State</option>
+                                <option value="NY" selected>New York</option>
+                                <option value="CA">California</option>
+                                <option value="TX">Texas</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Zip Code*</label>
+                            <input type="text" class="form-input" value="10001" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Phone Number*</label>
+                        <input type="tel" class="form-input" value="(555) 123-4567" required>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Email Address* (For order confirmation)</label>
+                        <input type="email" id="email-input" class="form-input border-blue-300 focus:border-blue-500 focus:ring-blue-500" placeholder="e.g. name@company.com" required>
+                        <p class="text-xs text-blue-700 mt-2 font-medium flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Checking out for the office? Use your company email to instantly unlock business pricing.
+                        </p>
+                    </div>
+
+                    <div id="b2b-retroactive-section" class="hidden mt-8 p-5 bg-gray-50 border border-gray-200 rounded-lg">
+                        <h3 class="text-sm font-bold text-gray-800 mb-2">B2B Purchase Agreement & Conditions</h3>
+                        <p class="text-xs text-gray-500 mb-4 leading-relaxed">
+                            Please confirm with your HR or management that you do not have an existing employee purchase program that might enjoy a different discount structure (which may be more or less depending on your company's agreement). <strong>If you decide to check out here, there will be no refunds issued if the refund reason is a discrepancy in your employee purchase discount.</strong>
+                        </p>
+                        
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="b2b-terms-checkbox" class="mt-1 w-4 h-4 text-gray-900 border-gray-300 rounded focus:ring-gray-900">
+                            <span class="text-sm font-medium text-gray-700">I confirm that I wish to check out here instead of placing this order with my company HR or admin who might have an existing agreement with Steelcase.</span>
+                        </label>
+                    </div>
+
+                    <div class="pt-6">
+                        <button id="checkout-button" type="submit" class="w-full bg-[#2a2a2a] hover:bg-black text-white font-semibold py-4 px-4 rounded transition-colors duration-200">
+                            Complete Order
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="w-full lg:w-[400px]">
+            <div class="border border-gray-300 p-6 rounded bg-white sticky top-6">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
+                    <h2 class="text-xl font-medium">Summary</h2>
+                    <a href="#" class="text-sm underline text-gray-600 hover:text-black">Edit Cart</a>
+                </div>
+
+                <div id="claim-later-banner" class="hidden mb-6 bg-blue-50 border border-blue-200 p-3 rounded-lg text-sm">
+                    <p class="text-blue-800 font-medium mb-1">You left savings on the table!</p>
+                    <p class="text-blue-600 text-xs mb-2">Your cart qualifies for a <strong id="banner-savings-amount"></strong> business discount.</p>
+                    <button onclick="openModal()" class="text-xs font-bold text-blue-700 underline hover:text-blue-900">Re-open Questionnaire</button>
+                </div>
+
+                <div class="space-y-3 text-sm text-gray-700 mb-6">
+                    <div class="flex justify-between">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">$12,138.00</span>
+                    </div>
+                    
+                    <div id="summary-b2b-discount" class="flex justify-between text-green-700 hidden font-medium">
+                        <span>B2B Tailored Discount</span>
+                        <span id="summary-b2b-amount">-$0.00</span>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span>Estimated Delivery</span>
+                        <span>FREE</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Estimated Tax</span>
+                        <span>$--</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center font-bold text-lg pt-4 border-t border-gray-200">
+                    <span>Estimated Total</span>
+                    <span id="summary-total">$12,138.00</span>
+                </div>
+
+                <div class="mt-8 text-center text-sm text-gray-500">
+                    <p class="mb-2">Cart#01365940</p>
+                    <p>Need some help? <a href="#" class="underline text-gray-800">Contact Us</a> or<br>please call 1.800.516.3454.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="b2b-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        
+        <div class="relative bg-white w-full max-w-lg mx-4 rounded-xl shadow-2xl p-8 transform transition-all">
+            <div class="mb-6">
+                <h2 id="modal-title" class="text-2xl font-bold text-blue-700 mb-2">Shopping for office?</h2>
+                <p class="text-sm text-gray-600">Kindly help us improve your shopping experience with our tailored B2B program. Based on your cart value and company email, you qualify for this exclusive discount.</p>
+            </div>
+
+            <form id="b2b-modal-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-800 mb-2">Are you buying this for office use?</label>
+                    <div class="flex gap-4">
+                        <label class="flex items-center gap-2"><input type="radio" name="office_use" value="yes" checked class="w-4 h-4 text-gray-900 focus:ring-gray-900"> Yes</label>
+                        <label class="flex items-center gap-2"><input type="radio" name="office_use" value="no" class="w-4 h-4 text-gray-900 focus:ring-gray-900"> No</label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-800 mb-1">Future purchases in 2026?</label>
+                        <select class="w-full p-2 border border-gray-300 rounded text-sm bg-white" required>
+                            <option value="">Select...</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-800 mb-1">Global offices count?</label>
+                        <input type="number" min="1" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="e.g. 3" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-800 mb-2">Estimated Units Needed:</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="flex items-center justify-between border border-gray-200 p-2 rounded">
+                            <span class="text-sm text-gray-700">Chairs</span>
+                            <select class="p-1 border border-gray-300 rounded text-xs bg-white w-20"><option value="0">0</option><option value="1-10">1-10</option><option value="11-50">11-50</option><option value="50+">50+</option></select>
+                        </div>
+                        <div class="flex items-center justify-between border border-gray-200 p-2 rounded">
+                            <span class="text-sm text-gray-700">Desks</span>
+                            <select class="p-1 border border-gray-300 rounded text-xs bg-white w-20"><option value="0">0</option><option value="1-10">1-10</option><option value="11-50">11-50</option><option value="50+">50+</option></select>
+                        </div>
+                        <div class="flex items-center justify-between border border-gray-200 p-2 rounded">
+                            <span class="text-sm text-gray-700">Meeting Tables</span>
+                            <select class="p-1 border border-gray-300 rounded text-xs bg-white w-20"><option value="0">0</option><option value="1-10">1-10</option><option value="11-50">11-50</option><option value="50+">50+</option></select>
+                        </div>
+                        <div class="flex items-center justify-between border border-gray-200 p-2 rounded">
+                            <span class="text-sm text-gray-700">Storage & Pods</span>
+                            <select class="p-1 border border-gray-300 rounded text-xs bg-white w-20"><option value="0">0</option><option value="1-10">1-10</option><option value="11-50">11-50</option><option value="50+">50+</option></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" id="b2b-account-create" class="mt-1 w-4 h-4 text-gray-900 border-gray-300 rounded focus:ring-gray-900">
+                        <span class="text-sm font-medium text-gray-800">Create a Steelcase for Business account to save my preferences and unlock tier-based pricing for future orders.</span>
+                    </label>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded border border-blue-100 mt-4">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" id="b2b-hr-check" required class="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        <span class="text-xs font-medium text-blue-900 leading-snug">
+                            We encourage you to check with your HR or admin to see if you are already currently enjoying our tailored B2B shopping experience. Check this box to confirm you are not utilizing an existing B2B client account.
+                        </span>
+                    </label>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-gray-200 flex justify-end gap-3">
+                    <button type="button" onclick="closeModalWithoutB2B()" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Skip</button>
+                    <button type="submit" id="claim-discount-btn" class="px-5 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition-colors shadow-sm">Claim Discount</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const CART_VALUE = 12138.00; 
+        const DISCOUNT_RATE = 0.05;
+        const DISCOUNT_AMOUNT = CART_VALUE * DISCOUNT_RATE;
+        
+        let b2bTriggered = false;
+        let b2bApplied = false;
+
+        const emailInput = document.getElementById('email-input');
+        const b2bModal = document.getElementById('b2b-modal');
+        const b2bModalForm = document.getElementById('b2b-modal-form');
+        const b2bRetroSection = document.getElementById('b2b-retroactive-section');
+        const checkoutButton = document.getElementById('checkout-button');
+        const b2bTermsCheckbox = document.getElementById('b2b-terms-checkbox');
+        const claimLaterBanner = document.getElementById('claim-later-banner');
+        
+        const summaryTotal = document.getElementById('summary-total');
+        const summaryB2bRow = document.getElementById('summary-b2b-discount');
+        const summaryB2bAmount = document.getElementById('summary-b2b-amount');
+
+        const personalEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com'];
+
+        const formatMoney = (amount) => {
+            return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        };
+
+        // Initialize dynamic text
+        document.getElementById('modal-title').innerText = `Claim your ${formatMoney(DISCOUNT_AMOUNT)} Business Discount`;
+        document.getElementById('banner-savings-amount').innerText = formatMoney(DISCOUNT_AMOUNT);
+        document.getElementById('claim-discount-btn').innerText = `Claim ${formatMoney(DISCOUNT_AMOUNT)} Discount`;
+
+        emailInput.addEventListener('blur', () => {
+            const email = emailInput.value.trim().toLowerCase();
+            if (!email || !email.includes('@')) return;
+
+            const domain = email.split('@')[1];
+            const isCompanyEmail = !personalEmailDomains.includes(domain);
+
+            if (CART_VALUE > 10000 && isCompanyEmail && !b2bTriggered && !b2bApplied) {
+                b2bTriggered = true;
+                openModal();
+            }
+        });
+
+        function openModal() {
+            b2bModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+            claimLaterBanner.classList.add('hidden'); // Hide banner while modal is open
+        }
+
+        function closeModalWithoutB2B() {
+            b2bModal.classList.add('hidden');
+            document.body.style.overflow = '';
+            if (!b2bApplied) {
+                claimLaterBanner.classList.remove('hidden');
+            }
+        }
+
+        b2bModalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            b2bModal.classList.add('hidden');
+            document.body.style.overflow = '';
+            claimLaterBanner.classList.add('hidden'); // Ensure banner is gone forever once claimed
+            
+            b2bApplied = true;
+            applyB2BDiscount();
+            showRetroactiveTerms();
+        });
+
+        function applyB2BDiscount() {
+            const newTotal = CART_VALUE - DISCOUNT_AMOUNT;
+            summaryB2bAmount.innerText = '-' + formatMoney(DISCOUNT_AMOUNT);
+            summaryB2bRow.classList.remove('hidden');
+            summaryTotal.innerText = formatMoney(newTotal);
+        }
+
+        function showRetroactiveTerms() {
+            b2bRetroSection.classList.remove('hidden');
+            checkoutButton.disabled = true;
+            checkoutButton.classList.add('opacity-50', 'cursor-not-allowed');
+            checkoutButton.classList.remove('hover:bg-black');
+            checkoutButton.innerText = 'Accept Terms to Complete Order';
+        }
+
+        b2bTermsCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                checkoutButton.disabled = false;
+                checkoutButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                checkoutButton.classList.add('hover:bg-black');
+                checkoutButton.innerText = 'Complete Order';
+            } else {
+                checkoutButton.disabled = true;
+                checkoutButton.classList.add('opacity-50', 'cursor-not-allowed');
+                checkoutButton.classList.remove('hover:bg-black');
+                checkoutButton.innerText = 'Accept Terms to Complete Order';
+            }
+        });
+
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (b2bApplied && !b2bTermsCheckbox.checked) {
+                alert("Please agree to the B2B terms before checking out.");
+                return;
+            }
+            alert("Order processing initiated successfully!");
+        });
+    </script>
+</body>
+</html>
